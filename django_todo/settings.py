@@ -29,7 +29,8 @@ SECRET_KEY = ')1g=3#csah@53-vg!97g!n(s-6=el2to)@(iny9&y=94qd8p1k'
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'http://127.0.0.1:8000/',
-                 'localhost:8000/admin/login/?next=/admin/']
+                 'localhost:8000/admin/login/?next=/admin/',
+                 'simple-todo-app-dj.herokuapp.com']
 
 
 # Application definition
