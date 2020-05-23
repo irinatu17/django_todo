@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
+if os.path.exists("env.py"):
+    import env
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)s: os.path.join(BASE_DIR, ...)
@@ -28,9 +30,8 @@ SECRET_KEY = ')1g=3#csah@53-vg!97g!n(s-6=el2to)@(iny9&y=94qd8p1k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'http://127.0.0.1:8000/',
-                 'localhost:8000/admin/login/?next=/admin/',
-                 'simple-todo-app-dj.herokuapp.com']
+ALLOWED_HOSTS = [os.environ.get('HOSTNAME'),
+                 os.environ.get('C9_HOSTNAME'), 'localhost']
 
 
 # Application definition
@@ -78,16 +79,8 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-'''
-ABASES = {
-#    'default': {
-#       'ENGINE': 'django.db.backends.sqlite3',
-#      'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#
-#'''
-DATABASES = {'default':
-             dj_database_url.parse("postgres://jhfqpwqstkfmhi:7665d6d1962745094b73de70a625767fde49ab66cb8000ae4929b9a3c3366950@ec2-54-217-204-34.eu-west-1.compute.amazonaws.com:5432/d56ps0m45uiq7u")}
+
+DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
